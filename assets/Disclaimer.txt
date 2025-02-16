@@ -1,0 +1,5 @@
+Part of the corpus for chatbot training came from:
+- https://convokit.cornell.edu/
+- https://aclanthology.org/I17-1099/
+
+The book texts for training markov chain were downloaded via Project Gutenberg, from https://www.gutenberg.org/.
