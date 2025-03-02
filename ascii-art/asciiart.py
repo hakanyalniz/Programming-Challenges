@@ -2,10 +2,10 @@
 from PIL import Image, ImageDraw, ImageFont
 
 ASCII_FONTS = ["#", "A", "a", "O", "o", ";", ".", " "]
-
 ASCII_NUMBERS = len(ASCII_FONTS)
 
 def main():
+    # image = Image.open("./test.png")
     image = Image.open("./151.jpg")
 
     generate_ascii_image(resize_image(image))
@@ -29,11 +29,12 @@ def generate_ascii_image(originalImage):
     for y in range(originalHeight):
         for x in range(originalWidth):
             pixel = originalImage.getpixel((x, y))
+
             # get brightness of pixel, then get the proper ASCII font for that brightness
             ASCII = generate_ascii_font(get_brightness(pixel))
             draw.text((x * 8, y * 8), ASCII, fill="black", font=font)
     
-    ASCII_Image.show()
+    ASCII_Image.save("ascii_image.png")
 
 
 def resize_image(image):
@@ -41,7 +42,7 @@ def resize_image(image):
 
     originalWidth, originalHeight = image.size
     small_image = image.resize((originalWidth // 8, originalHeight // 8))
-    return small_image
+    return small_image.convert("RGB")
 
 
 def generate_ascii_font(brightness):
