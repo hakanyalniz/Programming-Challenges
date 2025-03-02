@@ -1,11 +1,12 @@
 '''Create a program that turns ordinary images to ASCII art'''
 from PIL import Image, ImageDraw, ImageFont
 
-ASCII_FONTS = [" " ,".", ";", "o", "O", "a", "A", "#"]
+ASCII_FONTS = ["#", "A", "a", "O", "o", ";", ".", " "]
+
 ASCII_NUMBERS = len(ASCII_FONTS)
 
 def main():
-    image = Image.open("./test_small.png")
+    image = Image.open("./151.jpg")
 
     generate_ascii_image(resize_image(image))
 
@@ -15,12 +16,14 @@ def generate_ascii_image(originalImage):
     slowly build a new image with those font.'''
 
     originalWidth, originalHeight = originalImage.size
-    ASCII_Image = Image.new("RGB", (originalWidth, originalHeight), "white")
+    # The original image was resized to become small by factor of 8, we take that size
+    # and increase it by 8 to get original size
+    ASCII_Image = Image.new("RGB", (originalWidth * 8, originalHeight * 8), "white")
 
     # Initialize ImageDraw, which we will use to draw ASCII
     draw = ImageDraw.Draw(ASCII_Image)
     # Specify the font and size
-    font = ImageFont.truetype("arial.ttf", 8)
+    font = ImageFont.truetype("arial.ttf", 14)
 
     # Loop through each pixel, get the pixel value
     for y in range(originalHeight):
@@ -28,17 +31,17 @@ def generate_ascii_image(originalImage):
             pixel = originalImage.getpixel((x, y))
             # get brightness of pixel, then get the proper ASCII font for that brightness
             ASCII = generate_ascii_font(get_brightness(pixel))
-            draw.text((x, y), ASCII, fill="black", font=font)
+            draw.text((x * 8, y * 8), ASCII, fill="black", font=font)
     
     ASCII_Image.show()
 
 
 def resize_image(image):
-    '''Resize image to half, then size it back up.'''
+    '''Resize image to half'''
 
     originalWidth, originalHeight = image.size
     small_image = image.resize((originalWidth // 8, originalHeight // 8))
-    return small_image.resize(image.size).convert("RGB")
+    return small_image
 
 
 def generate_ascii_font(brightness):
