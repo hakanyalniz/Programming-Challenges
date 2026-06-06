@@ -1,3 +1,9 @@
+;---------------------
+;  Flat Assembler file
+;  x86-64 Linux
+;  FizzBuzz using Assembly
+;---------------------
+
 section .data
     fizz db "Fizz"
     fizz_len equ $ - fizz 
