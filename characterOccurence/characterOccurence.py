@@ -16,14 +16,23 @@ for i in range(len(user_name)):
         count_string[user_name[i]] = 1
 
 for key, value in count_string.items():
-    sorted_string_list.insert(0, (key, value))
+    if len(sorted_string_list) == 0: # If no element in list, just insert it into index 0
+            sorted_string_list.insert(0, (key, value))
+    
+    for element in sorted_string_list[:]: # element here is a tuple like ("h", 2), we create a shallow copy or else it will create infinite loop
+        print(element)
+        if value > element[1]: # If the value is greater than the value present in list, put it before the element
+            element_index: int = sorted_string_list.index(element)
+            sorted_string_list.insert(element_index, (key, value))
 
-    print(f"Key: {key}, Value: {value}")
+
 
 print(count_string)
-print(sorted_string_list)
+print("Sorted", sorted_string_list)
 
 # Look over the dictionary one by one
 # Get the largest number and put it into list
 # For each check thereafter, compare with the list. If larger, put before the compared number
 # If smaller, check the next number. If last number is checked and it is still not larger, put last
+
+# Take the dictionary element, compare it to all list elements. If none are in list, place it first
