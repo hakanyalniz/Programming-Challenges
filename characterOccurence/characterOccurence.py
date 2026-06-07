@@ -16,14 +16,21 @@ for i in range(len(user_name)):
         count_string[user_name[i]] = 1
 
 for key, value in count_string.items():
+    print(key, value)
     if len(sorted_string_list) == 0: # If no element in list, just insert it into index 0
             sorted_string_list.insert(0, (key, value))
+            continue
     
     for element in sorted_string_list[:]: # element here is a tuple like ("h", 2), we create a shallow copy or else it will create infinite loop
-        print(element)
+        print("sorted_string_list", sorted_string_list)
+        
+        element_index: int = sorted_string_list.index(element)
+
         if value > element[1]: # If the value is greater than the value present in list, put it before the element
-            element_index: int = sorted_string_list.index(element)
             sorted_string_list.insert(element_index, (key, value))
+        elif len(sorted_string_list)-1 == element_index: # If it is not greater than, then place it last
+            sorted_string_list.append((key, value))
+
 
 
 
