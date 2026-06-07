@@ -11,18 +11,20 @@ sorted_string_list: list[tuple[str, int]] = []
 
 for i in range(len(user_name)):
     if user_name[i] in count_string:
-        count_string[user_name[i]] += count_string[user_name[i]]
+        count_string[user_name[i]] += 1
     else:
         count_string[user_name[i]] = 1
 
+print("count_string", count_string)
+
 for key, value in count_string.items():
-    print(key, value)
+    # print(key, value)
     if len(sorted_string_list) == 0: # If no element in list, just insert it into index 0
             sorted_string_list.insert(0, (key, value))
             continue
     
     for element in sorted_string_list[:]: # element here is a tuple like ("h", 2), we create a shallow copy or else it will create infinite loop
-        print("sorted_string_list", sorted_string_list)
+        # print("sorted_string_list", sorted_string_list)
         
         element_index: int = sorted_string_list.index(element)
 
@@ -34,8 +36,8 @@ for key, value in count_string.items():
 
 
 
-print(count_string)
-print("Sorted", sorted_string_list)
+# print(count_string)
+# print("Sorted", sorted_string_list)
 
 # Look over the dictionary one by one
 # Get the largest number and put it into list
