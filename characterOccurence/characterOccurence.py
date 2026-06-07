@@ -6,6 +6,7 @@ else:
     user_name: str = input("Enter string: ").lower()
 
 count_string: dict[str, int] = {}
+sorted_string_list: list[tuple[str, int]] = []
 
 
 for i in range(len(user_name)):
@@ -14,6 +15,15 @@ for i in range(len(user_name)):
     else:
         count_string[user_name[i]] = 1
 
+for key, value in count_string.items():
+    sorted_string_list.insert(0, (key, value))
 
+    print(f"Key: {key}, Value: {value}")
 
 print(count_string)
+print(sorted_string_list)
+
+# Look over the dictionary one by one
+# Get the largest number and put it into list
+# For each check thereafter, compare with the list. If larger, put before the compared number
+# If smaller, check the next number. If last number is checked and it is still not larger, put last
