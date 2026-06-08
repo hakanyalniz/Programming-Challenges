@@ -2,9 +2,15 @@ import random
 
 def get_password_length_input() -> int:
     while True:
-        raw_length: str = input("Password length: ")
+        raw_length: str = input("Password length (Minimum 12): ")
         try:
-            return int(raw_length)
+            int_length: int = int(raw_length)
+            if (int_length < 12):
+                print("Please pick a greater length. \n")
+                continue
+            
+            return int_length
+
         except ValueError:
             print("Please enter a number.\n")
 
