@@ -1,6 +1,14 @@
 import random
 
-password_length: int = 16
+def get_password_length_input() -> int:
+    while True:
+        raw_length: str = input("Password length: ")
+        try:
+            return int(raw_length)
+        except ValueError:
+            print("Please enter a number.\n")
+
+password_length: int = get_password_length_input()
 final_password: str = ""
 
 lower_alphabet: list[str] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
