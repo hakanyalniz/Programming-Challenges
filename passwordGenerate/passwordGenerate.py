@@ -8,7 +8,17 @@ upper_alphabet: list[str] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "
 numbers: list[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 for index in range(password_length):
-    final_password += "j"
+    match random.randint(0, 2):
+        case 0:
+            final_password += lower_alphabet[random.randint(0,20)]
+        case 1:
+            final_password += upper_alphabet[random.randint(0,20)]
+        case 2:
+            final_password += str(numbers[random.randint(0,9)])
+        case _: pass
+
+print(final_password)
+
 
 
 # 16 long
