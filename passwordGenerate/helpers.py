@@ -40,8 +40,10 @@ def write_password_toFile(generated_password: str):
     Writes the selected password into a file.
     """
 
+    raw_input = input("Leave a note for your password: ")
+
     with open("passwords.txt", "a", encoding="utf-8") as file:
-        file.write(f"{generated_password} ,\n")
+        file.write(f"{generated_password} , Note: {raw_input}\n")
 
 def read_passwords():
 
