@@ -41,7 +41,7 @@ def write_password_toFile(generated_password: str):
     """
 
     with open("passwords.txt", "a", encoding="utf-8") as file:
-        file.write(f"{generated_password}\n")
+        file.write(f"{generated_password} ,\n")
 
 def read_passwords():
 
