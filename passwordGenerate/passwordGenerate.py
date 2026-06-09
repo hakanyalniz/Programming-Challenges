@@ -1,36 +1,6 @@
 import random
+from helpers import include_special_toggle, get_password_length_input
 
-def get_password_length_input() -> int:
-    """
-    Returns an integer based on the user input with minimum length of 12.
-    If anything else than a number is inserted or if a number less than 12 is inserted it will ask again.
-    Pressing enter will return the default length of 16.
-    """
-
-    while True:
-        raw_length: str = input("Password length: ")
-        if raw_length == "":
-            return 16
-        
-        try:
-            int_length: int = int(raw_length)
-            if (int_length < 12):
-                print("Please pick a greater length. \n")
-                continue
-            return int_length
-        except ValueError:
-            print("Please enter a number.\n")
-
-def include_special_toggle() -> bool:
-    while True:
-        raw_input = input("Include special characters:")
-        try:   
-            if raw_input.lower() == "true":
-                return True
-            elif raw_input.lower() == "false":
-                return False
-        except ValueError:
-            print("Please enter True or False")
 
 input("You will be asked the following. You can also press enter for default:\n" \
 "To include special characters in password generation or not. (True or False) (!, @, # and so on) \n" \
@@ -65,9 +35,6 @@ print(final_password)
 
 
 # 16 long
-# optional symbol characters included
-# or only characters
-# or characters and numbers
 # store selected passwords in a notepad
 # read from the notepad to show all selected passwords
 # add note to the selected passwords, so the user can note where they belong
