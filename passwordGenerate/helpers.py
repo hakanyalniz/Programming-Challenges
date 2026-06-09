@@ -26,7 +26,7 @@ def include_special_toggle() -> bool:
     """
         
     while True:
-        raw_input = input("Include special characters:")
+        raw_input = input("Include special characters: ")
         try:   
             if raw_input.lower() == "true":
                 return True
@@ -42,3 +42,27 @@ def write_password_toFile(generated_password: str):
 
     with open("passwords.txt", "a", encoding="utf-8") as file:
         file.write(f"{generated_password}\n")
+
+def read_passwords():
+
+    while True:
+        raw_input = input("Read your passwords?: ")
+        try:   
+            if raw_input.lower() == "true":
+                    with open("passwords.txt", "r", encoding="utf-8") as file:
+                        for line in file:
+                            # strip() removes the trailing newline character (\n)
+                            print(line.strip())
+                    exit()
+                            
+            elif raw_input.lower() == "false" or raw_input == "":
+                return False
+        except ValueError:
+            print("Please enter True or False")
+
+
+
+# Refactor all the code here so the inputs and so on are in one main function
+# while the utility is left to the functions themselves
+# Where the user can chose to either enter new password, read from it, see them, delete them and so on
+# Refactor to change and overhaul the UI
