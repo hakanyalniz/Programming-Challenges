@@ -30,7 +30,15 @@ def include_special_toggle() -> bool:
         try:   
             if raw_input.lower() == "true":
                 return True
-            elif raw_input.lower() == "false":
+            elif raw_input.lower() == "false" or raw_input == "":
                 return False
         except ValueError:
             print("Please enter True or False")
+
+def write_password_toFile(generated_password: str):
+    """
+    Writes the selected password into a file.
+    """
+
+    with open("passwords.txt", "a", encoding="utf-8") as file:
+        file.write(f"{generated_password}\n")

@@ -1,5 +1,5 @@
 import random
-from helpers import include_special_toggle, get_password_length_input
+from helpers import include_special_toggle, get_password_length_input, write_password_toFile
 
 
 input("You will be asked the following. You can also press enter for default:\n" \
@@ -30,11 +30,12 @@ for index in range(password_length):
             final_password += symbols[random.randint(0, 11)]
         case _: pass
 
+write_password_toFile(final_password)
+
 print(final_password)
 
 
 
-# 16 long
 # store selected passwords in a notepad
 # read from the notepad to show all selected passwords
 # add note to the selected passwords, so the user can note where they belong
