@@ -3,7 +3,7 @@ from helpers import include_special_toggle, get_password_length_input, write_pas
 
 
 input("\n\nYou will be asked the following. You can also press enter for default:\n" \
-"To include special characters in password generation or not. (True or False) (!, @, # and so on) \n" \
+"To include special characters in password generation or not. (Yes or No) (!, @, # and so on) \n" \
 "Password length. Minimum is 12 length.\n\n\n" \
 "You can also access your current passwords. \n" \
 "Press enter to continue.\n" \

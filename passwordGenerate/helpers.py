@@ -1,17 +1,3 @@
-def input_HUB(prompt: str, input_type: int):
-    raw_input: str = input(prompt)
-
-    match input_type:
-        case 0:
-            return get_password_length_input()
-        case 1:
-            return include_special_toggle()
-        case 2: 
-            return read_passwords()
-        case _:
-            raise ValueError("The case for this input type can not be found!")
-
-
 def get_password_length_input() -> int:
     """
     Returns an integer based on the user input with minimum length of 12.
@@ -42,12 +28,12 @@ def include_special_toggle() -> bool:
     while True:
         raw_input = input("Include special characters: ")
         try:   
-            if raw_input.lower() == "true":
+            if raw_input.lower() == "yes":
                 return True
-            elif raw_input.lower() == "false" or raw_input == "":
+            elif raw_input.lower() == "no" or raw_input == "":
                 return False
         except ValueError:
-            print("Please enter True or False")
+            print("Please enter Yes or No")
 
 def write_password_toFile(generated_password: str):
     """
@@ -57,7 +43,7 @@ def write_password_toFile(generated_password: str):
     raw_input = input("Leave a note for your password: ")
 
     with open("passwords.txt", "a", encoding="utf-8") as file:
-        file.write(f"{generated_password} , Note: {raw_input}\n")
+        file.write(f"{generated_password} , {raw_input}\n")
 
 def read_passwords():
     """
@@ -67,7 +53,7 @@ def read_passwords():
     while True:
         raw_input = input("Read your passwords?: ")
         try:   
-            if raw_input.lower() == "true":
+            if raw_input.lower() == "yes":
                     with open("passwords.txt", "r", encoding="utf-8") as file:
                         print("\n\n")
                         for line in file:
@@ -76,10 +62,10 @@ def read_passwords():
                     print("\n\n")
                     exit()
                             
-            elif raw_input.lower() == "false" or raw_input == "":
+            elif raw_input.lower() == "no" or raw_input == "":
                 return False
         except ValueError:
-            print("Please enter True or False")
+            print("Please enter Yes or No")
 
 
 
