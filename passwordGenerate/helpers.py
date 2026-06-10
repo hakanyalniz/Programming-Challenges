@@ -34,7 +34,7 @@ def include_special_toggle() -> bool:
             elif raw_input.lower() == "no" or raw_input == "":
                 return False
         except ValueError:
-            print("Please enter Yes or No")
+            print("Please enter Yes or No.")
 
 
 def write_password_toFile(generated_password: str):
@@ -50,7 +50,7 @@ def write_password_toFile(generated_password: str):
 
 def read_passwords():
     """
-    Opens a password.txt file and reads from it, then prints them on screen.
+    Opens a password file and reads from it, then prints them on screen.
     Exit the program after showing the passwords.
     """
 
@@ -69,7 +69,7 @@ def read_passwords():
             elif raw_input.lower() == "no" or raw_input == "":
                 return False
         except ValueError:
-            print("Please enter Yes or No")
+            print("Please enter Yes or No.")
 
 
 def delete_password():
@@ -110,7 +110,7 @@ def delete_password():
 
         except ValueError:
             print(
-                "Please enter Yes or No and make sure the password you are trying to delete exists"
+                "Please enter Yes or No and make sure the password you are trying to delete exists."
             )
 
 
