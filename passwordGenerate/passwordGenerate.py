@@ -1,6 +1,7 @@
 import random
 
 from helpers import (
+    delete_password,
     get_password_length_input,
     include_special_toggle,
     read_passwords,
@@ -16,6 +17,7 @@ input(
 )
 
 read_passwords()
+delete_password()
 
 # If we toggle true, use 1 or else use 0. Then add it to the random number upper limit. This will include symbols list or not
 special_char_toggle = 1 if include_special_toggle() else 0
