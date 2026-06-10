@@ -76,6 +76,7 @@ def delete_password():
     """
     The user can select a password based on row and delete it.
     This works on index number, therefore the argument it accepts is an index.
+    Exits the program after deleting a password.
     """
 
     while True:
@@ -98,6 +99,9 @@ def delete_password():
                 # Check to make sure index below 0 is not selected and also that such an index exists in the lines
                 if 0 <= line_to_delete < len(lines):
                     del lines[line_to_delete]
+                else:
+                    print("Please enter an index number that matches the password row.")
+                    continue
 
                 # Rewrite/Overwrite into the file
                 with open("passwords.txt", "w") as file:
@@ -109,9 +113,7 @@ def delete_password():
                 return False
 
         except ValueError:
-            print(
-                "Please enter Yes or No and make sure the password you are trying to delete exists."
-            )
+            print("Please enter Yes or No.")
 
 
 # Where the user can chose to either enter new password, read from it, see them, delete them and so on
