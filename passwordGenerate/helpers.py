@@ -1,3 +1,17 @@
+def input_HUB(prompt: str, input_type: int):
+    raw_input: str = input(prompt)
+
+    match input_type:
+        case 0:
+            return get_password_length_input()
+        case 1:
+            return include_special_toggle()
+        case 2: 
+            return read_passwords()
+        case _:
+            raise ValueError("The case for this input type can not be found!")
+
+
 def get_password_length_input() -> int:
     """
     Returns an integer based on the user input with minimum length of 12.
@@ -46,15 +60,20 @@ def write_password_toFile(generated_password: str):
         file.write(f"{generated_password} , Note: {raw_input}\n")
 
 def read_passwords():
+    """
+    Opens a password.txt file and reads from it, then prints them on screen.
+    """
 
     while True:
         raw_input = input("Read your passwords?: ")
         try:   
             if raw_input.lower() == "true":
                     with open("passwords.txt", "r", encoding="utf-8") as file:
+                        print("\n\n")
                         for line in file:
                             # strip() removes the trailing newline character (\n)
                             print(line.strip())
+                    print("\n\n")
                     exit()
                             
             elif raw_input.lower() == "false" or raw_input == "":
