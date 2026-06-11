@@ -37,7 +37,7 @@ def include_special_toggle() -> bool:
             print("Please enter Yes or No.")
 
 
-def write_password_toFile(generated_password: str):
+def write_password_toFile(generated_password: bytes):
     """
     Writes the selected password into a file.
     """
@@ -114,6 +114,3 @@ def delete_password():
 
         except ValueError:
             print("Please enter Yes or No.")
-
-
-# Where the user can chose to either enter new password, read from it, see them, delete them and so on

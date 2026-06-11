@@ -1,5 +1,6 @@
 import random
 
+import bcrypt
 from helpers import (
     delete_password,
     get_password_length_input,
@@ -98,12 +99,11 @@ for index in range(password_length):
         case _:
             pass
 
-write_password_toFile(final_password)
+password_bytes = final_password.encode("utf-8")
+hashed_password = bcrypt.hashpw(password_bytes, bcrypt.gensalt())
+
+write_password_toFile(hashed_password)
 
 print(final_password)
 
-
-# store selected passwords in a notepad
-# read from the notepad to show all selected passwords
-# add note to the selected passwords, so the user can note where they belong
 # later change the notepad design to encrypted
