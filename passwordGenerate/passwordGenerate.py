@@ -18,7 +18,7 @@ input(
 )
 
 cipher_suite = log_user()
-read_passwords()
+read_passwords(cipher_suite)
 delete_password()
 
 # If we toggle true, use 1 or else use 0. Then add it to the random number upper limit. This will include symbols list or not

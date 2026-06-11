@@ -55,7 +55,7 @@ def write_password_toFile(generated_password: bytes):
         file.write(f"{generated_password} , {raw_input}\n")
 
 
-def read_passwords():
+def read_passwords(cipher_suite: Fernet):
     """
     Opens a password file and reads from it, then prints them on screen.
     Exit the program after showing the passwords.
@@ -70,9 +70,13 @@ def read_passwords():
                     for line in file:
                         # strip() removes the trailing newline character (\n)
                         clean_line = line.strip()
-                        split_password = clean_line.split(",", maxsplit=1)[0]
+                        # Take the left side of the password row and remove the beginning and end tags
+                        # Take the -2 of ending, because strip would not stript all whitespace due to the trailing comma
+                        split_password = clean_line.split(",", maxsplit=1)[0][2:-2]
 
-                        print(split_password)
+                        decrypted_bytes = cipher_suite.decrypt(split_password)
+                        original_password = decrypted_bytes.decode("utf-8")
+                        print(original_password)
 
                 print("\n\n")
                 exit()
