@@ -1,3 +1,10 @@
+import base64
+
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
+
 def get_password_length_input() -> int:
     """
     Returns an integer based on the user input with minimum length of 12.
@@ -62,7 +69,11 @@ def read_passwords():
                     print("\n\n")
                     for line in file:
                         # strip() removes the trailing newline character (\n)
-                        print(line.strip())
+                        clean_line = line.strip()
+                        split_password = clean_line.split(",", maxsplit=1)[0]
+
+                        print(split_password)
+
                 print("\n\n")
                 exit()
 
@@ -114,3 +125,21 @@ def delete_password():
 
         except ValueError:
             print("Please enter Yes or No.")
+
+
+def log_user():
+    salt = b"\x92\xfa\xbc\x12\x88\x34\x11\x09"  # Salt to add when hashing password
+
+    master_password = input("Please enter your master password: ")
+
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=480000,  # Makes it computationally slow to guess
+    )
+
+    # Derive the key and encode it for Fernet
+    derived_key = base64.urlsafe_b64encode(kdf.derive(master_password.encode("utf-8")))
+    cipher_suite = Fernet(derived_key)
+    return cipher_suite

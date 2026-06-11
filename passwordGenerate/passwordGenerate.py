@@ -1,10 +1,10 @@
 import random
 
-import bcrypt
 from helpers import (
     delete_password,
     get_password_length_input,
     include_special_toggle,
+    log_user,
     read_passwords,
     write_password_toFile,
 )
@@ -17,6 +17,7 @@ input(
     "Press enter to continue.\n"
 )
 
+cipher_suite = log_user()
 read_passwords()
 delete_password()
 
@@ -99,10 +100,11 @@ for index in range(password_length):
         case _:
             pass
 
-password_bytes = final_password.encode("utf-8")
-hashed_password = bcrypt.hashpw(password_bytes, bcrypt.gensalt())
 
-write_password_toFile(hashed_password)
+# Encrypting a Stored Credential
+encrypted_credential = cipher_suite.encrypt(final_password.encode("utf-8"))
+
+write_password_toFile(encrypted_credential)
 
 print(final_password)
 
