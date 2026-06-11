@@ -132,6 +132,15 @@ def delete_password():
 
 
 def log_user():
+    """
+    Logs the user and turns the inputted master password into a cipher for encrypting or decrypting passwords.
+    Returns this cipher.
+
+    Master password is scrambled by kdf.
+    kdf is formatted into Fernet accessible final key.
+    A tool is created, called cipher suite, that uses Fernet to encrypt the password.
+    """
+
     salt = b"\x92\xfa\xbc\x12\x88\x34\x11\x09"  # Salt to add when hashing password
 
     master_password = input("Please enter your master password: ")
@@ -140,7 +149,7 @@ def log_user():
         algorithm=hashes.SHA256(),
         length=32,
         salt=salt,
-        iterations=480000,  # Makes it computationally slow to guess
+        iterations=480000,
     )
 
     # Derive the key and encode it for Fernet
