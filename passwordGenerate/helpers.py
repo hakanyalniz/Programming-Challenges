@@ -1,6 +1,6 @@
 import base64
 
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
@@ -85,6 +85,8 @@ def read_passwords(cipher_suite: Fernet):
                 return False
         except ValueError:
             print("Please enter Yes or No.")
+        except InvalidToken:
+            print("You have entered the wrong master password. Exit and try again.")
 
 
 def delete_password():

@@ -107,5 +107,3 @@ encrypted_credential = cipher_suite.encrypt(final_password.encode("utf-8"))
 write_password_toFile(encrypted_credential)
 
 print(final_password)
-
-# later change the notepad design to encrypted
