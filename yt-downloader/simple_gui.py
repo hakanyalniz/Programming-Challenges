@@ -5,15 +5,15 @@ from actions import download_youtube_video
 
 
 def on_button_click():
-    user_url = input_field.get(
-        "1.0", tk.END
-    ).strip()  # Get from character 0 and strip newline
+    user_url = (
+        input_field.get("1.0", tk.END).strip().split("\n")
+    )  # Strip and split from new line, getting each URL
 
-    print(user_url)
     status_label.config(text="Downloading...")
     root.update_idletasks()  # Update the GUI to fix the button clicked effect and update the status
 
-    download_youtube_video(user_url)
+    for URL in user_url:
+        download_youtube_video(URL)
 
     status_label.config(text="Complete!")
     root.after(3000, clear_status_message)
@@ -57,10 +57,10 @@ input_field = tk.Text(
 input_field.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 # Adjust the config
-scrollbar.config(command=input_field.yview)
+scrollbar.config(command=input_field.yview)  # type: ignore
 
 # Add the input field to the paned window
-paned_window.add(input_frame, stretch="never")
+paned_window.add(input_frame, stretch="never")  # type: ignore
 
 # Button widget
 button = tk.Button(root, text="Download", command=on_button_click)
